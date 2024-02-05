@@ -32,6 +32,10 @@ sudo systemctl restart sshd
 
 ---------------------------------------------------------------------------------------------------------------------
 #Security Patching
-#1. sudo yum update
+#1. 
+sudo yum update
+
+#2. sudo yum install yum-utils
+sudo yum update --security
 
 
