@@ -1,0 +1,37 @@
+#Firewall Configuration:
+#1.Implement a firewall rule to block all incoming traffic on port 22 (SSH).
+sudo firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" port protocol="tcp" port="22" reject'
+sudo firewall-cmd --reload
+
+#2. Allow incoming traffic on port 80 (HTTP) and port 443 (HTTPS).
+sudo firewall-cmd --zone=public --add-port=80/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=443/tcp --permanent
+sudo firewall-cmd --reload
+
+
+----------------------------------------------------------------------------------------------------------------
+#SSH Configuration
+#1. Disable root login via SSH.
+sudo nano /etc/ssh/sshd_config
+Modify: PermitRootLogin no
+
+
+
+#2. Enable SSH key-based authentication for the "testuser" account.
+
+ssh-keygen -t rsa
+ssh-copy-id testuser@192.168.1.100
+sudo nano /etc/ssh/sshd_config
+ Modify: PasswordAuthentication no
+         PubkeyAuthentication yes
+
+sudo systemctl restart sshd
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+#Security Patching
+#1. sudo yum update
+
+
