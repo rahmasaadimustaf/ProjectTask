@@ -1,0 +1,64 @@
+#User Managemnet
+#1. Create a new user account named "testuser" with appropriate permissions.
+sudo useradd testuser
+sudo passwd testuser
+sudo usermod -aG wheel testuser
+
+Verfication:
+
+
+
+
+------------------------
+#2. Set the password for "testuser" to expire every 90 days.
+sudo chage -M 90 testuser
+
+Verfication:
+
+
+
+
+
+---------------------------------------------------------------------------------------
+#File System Management
+#1. Create a new directory named "project_files" in the root (/) directory.
+sudo mkdir /project_files
+Verfication:
+
+
+
+
+------------------------------
+#2. Grant read and write permissions for the "testuser" to the "project_files" directory.
+sudo chown testuser:testuser /project_files
+sudo chmod u+rw /project_files
+Verfication:
+ls -l / | grep project_files
+
+
+
+------------------------------------------------------------------------------------------
+#Networking:
+#1.Configure a static IP address (192.168.1.100) for the system
+sudo nano /etc/sysconfig/network-scripts/ifcfg-ens33
+IPADDR=192.168.1.100
+NETMASK=255.255.255.0
+GATEWAY=192.168.1.1
+DNS1=8.8.8.8
+DNS2=8.8.4.4
+
+sudo systemctl restart network
+
+
+Verfication:
+
+------------------------------
+#2. Ensure the system can ping both its gateway (192.168.1.1) and an external domain (e.g., google.com)
+
+
+
+Verfication:
+
+
+
+
